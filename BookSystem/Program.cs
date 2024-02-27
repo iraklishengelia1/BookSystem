@@ -37,18 +37,34 @@ while (true)
                 string genre = Console.ReadLine();
                 if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(author) || string.IsNullOrEmpty(genre))
                     throw new ArgumentNullException("Title, Author, Genre");
-                int year;
-                do
-                {
-                    Console.Write("Enter publication year (between 1 and 2100): ");
-                } while (!int.TryParse(Console.ReadLine(), out year) || year < 1 || year > 2024);
-                library.AddBook(new Book { Name = title, Author = author, Genre = genre, ReleaseDate = new DateTime(year, 1, 1) });
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            break;
+                Console.Write("Enter publication year (between 1 and 2100): ");
+        int year;
+        do
+        {
+            Console.Write("Enter publication year (between 1 and 2100): ");
+        } while (!int.TryParse(Console.ReadLine(), out year) || year < 1 || year > 2024);
+
+        Console.Write("Enter publication month (between 1 and 12): ");
+        int month;
+        do
+        {
+            Console.Write("Enter publication month (between 1 and 12): ");
+        } while (!int.TryParse(Console.ReadLine(), out month) || month < 1 || month > 12);
+
+        Console.Write("Enter publication day (between 1 and 31): ");
+        int day;
+        do
+        {
+            Console.Write("Enter publication day (between 1 and 31): ");
+        } while (!int.TryParse(Console.ReadLine(), out day) || day < 1 || day > 31);
+
+        library.AddBook(new Book { Name = title, Author = author, Genre = genre, ReleaseDate = new DateTime(year, month, day) });
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);
+    }
+    break;
 
         case "2":
             Console.WriteLine("Books in the library:");
